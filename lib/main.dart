@@ -4,6 +4,7 @@ import 'package:flutter_application_2/home_screen.dart';
 import 'package:flutter_application_2/login_screen.dart';
 import 'package:flutter_application_2/pagehome.dart';
 import 'package:flutter_application_2/profile_screen.dart';
+import 'package:flutter_application_2/setting_page.dart';
 import 'package:flutter_application_2/smart_home_screen.dart';
 
 void main() {
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       // theme: ,
       debugShowCheckedModeBanner: false,
       //
-      home : SmartHomeScreen()
+      home :SettingPage ()
     );
       
 }
