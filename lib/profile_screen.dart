@@ -1,50 +1,44 @@
 import 'package:flutter/material.dart';
 
-class ProfileScreen extends StatelessWidget{
+class ListViewExample extends StatelessWidget {
+  const ListViewExample({super.key});
 
-
- @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Home page"),
-        actions: [
-          IconButton(onPressed: null, 
-          icon: Icon(Icons.person,
-          color: Colors.blue),)
+      appBar: AppBar(title: const Text("ListView Example")),
+      body: Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              itemCount: 5,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  leading: const Icon(Icons.person),
+                  title: Text("Builder Item ${index + 1}"),
+                );
+              },
+            ),
+          ),
+
+          const Divider(thickness: 3, color: Colors.black),
+
+          Expanded(
+            child: ListView.separated(
+              itemCount: 5,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  leading: const Icon(Icons.star),
+                  title: Text("Separated Item ${index + 1}"),
+                );
+              },
+              separatorBuilder: (context, index) {
+                return const Divider(color: Colors.grey, thickness: 1);
+              },
+            ),
+          ),
         ],
       ),
-drawer: Drawer(
-
-  
-),
-body:Container(
-  padding: EdgeInsets.symmetric(horizontal: 22,vertical: 16),
-  width: double.infinity,
-  decoration: BoxDecoration(
-    borderRadius: BorderRadius.all(Radius.circular(20)),
-
-  ),
-  child: Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Text(
-        "Wednesday, june 20",
-        style: TextStyle(fontSize: 13,fontWeight: FontWeight.w400),
-
-  ),
-   SizedBox(height: 4),
-   Text(
-    'Good evening , Rebecca',
-    style: TextStyle(fontSize:13,
-    fontWeight: FontWeight.bold),
-   ),
-   
-    ],
-  ),
-)
- 
-
     );
   }
 }
