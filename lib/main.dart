@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       // theme: ,
       debugShowCheckedModeBanner: false,
       //
-      home :SettingPage ()
+      home :LoginScreen()
     );
       
 }

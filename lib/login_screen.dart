@@ -1,67 +1,210 @@
-// import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
+// ================= GLOBAL STORAGE =================
+String savedEmail = "";
+String savedPassword = "";
+String savedName = "";
 
-// class loginScreen extends StatelessWidget {
-//   //const LoginScreen({super.key});
+// ================= LOGIN SCREEN =================
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//        appBar:appBar() as PreferredSizeWidget?,
-//       body: Center(
-       
-//         child: Column(
-         
-// mainAxisAlignment:MainAxisAlignment.center,
-//            children: appButton,
-//         ),
-//       ),
-//     );
-//   }
-// ////////////////functions///////////////////////
-//   List<Widget> get appButton {
-//     return [
-//           GestureDetector(
-//             onTap: null,
-//             child: Container(
-//               decoration: BoxDecoration(
-//                 color: Colors.blue,
-//                 borderRadius:BorderRadius.circular(12),
-//               ),
-//               height: 50,
-//               width: 360,
-//               child: const Center(child: Text("Go to ListViewTest")),
-//             ),
-//           )  
-//         ];
-//   }
-//   ////////////////////////////functions///////////////////////
-//   Widget appBar() {
-//     return AppBar(
-//       //backgroundColor: AppColors.backgroungColor,
-//       title: Text(
-//         'My Home',
-//         style: TextStyle(fontSize: 27, fontWeight: FontWeight.bold),
-//       ),
-//       centerTitle: true,
-//       actions: [
-//         Container(
-//           padding: const EdgeInsets.all(1),
-//           margin: const EdgeInsets.all(12),
-//           child: CircleAvatar(
-//             backgroundColor: Colors.green,
-//             child: Text(
-//               'JS',
-//               style: TextStyle(
-//                 color: Colors.white,
-//                 fontWeight: FontWeight.bold,
-//               ),
-//             ),
-//           ),
-//         ),
-//       ],
-//     );
-//   }
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
 
-// }
+class _LoginScreenState extends State<LoginScreen> {
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Login"),
+        centerTitle: true,
+      ),
+
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+
+            children: [
+
+              const SizedBox(height: 30),
+
+              Image.network(
+  "https://cdn-icons-png.flaticon.com/512/5087/5087579.png",
+  height: 180,
+),
+
+              const SizedBox(height: 30),
+
+              TextField(
+                controller: emailController,
+                decoration: const InputDecoration(
+                  labelText: "Email",
+                  border: OutlineInputBorder(),
+                  prefixIcon: Icon(Icons.email),
+                ),
+              ),
+
+              const SizedBox(height: 15),
+
+              TextField(
+                controller: passwordController,
+                obscureText: true,
+                decoration: const InputDecoration(
+                  labelText: "Password",
+                  border: OutlineInputBorder(),
+                  prefixIcon: Icon(Icons.lock),
+                ),
+              ),
+
+              const SizedBox(height: 20),
+
+              ElevatedButton(
+                onPressed: () {
+                  if (emailController.text == savedEmail &&
+                      passwordController.text == savedPassword) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text("Login Success")),
+                    );
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text("Wrong Email or Password")),
+                    );
+                  }
+                },
+                child: const Text("Login"),
+              ),
+
+              const SizedBox(height: 10),
+
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SignupScreen(),
+                    ),
+                  );
+                },
+                child: const Text("Don't have an account? Sign Up"),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// ================= SIGNUP SCREEN =================
+
+class SignupScreen extends StatefulWidget {
+  const SignupScreen({super.key});
+
+  @override
+  State<SignupScreen> createState() => _SignupScreenState();
+}
+
+class _SignupScreenState extends State<SignupScreen> {
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Sign Up"),
+        centerTitle: true,
+      ),
+
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+
+            children: [
+
+              const SizedBox(height: 30),
+
+              Image.asset(
+                "assets/images/logo.png",
+                height: 180,
+              ),
+
+              const SizedBox(height: 30),
+
+              TextField(
+                controller: nameController,
+                decoration: const InputDecoration(
+                  labelText: "Full Name",
+                  border: OutlineInputBorder(),
+                  prefixIcon: Icon(Icons.person),
+                ),
+              ),
+
+              const SizedBox(height: 15),
+
+              TextField(
+                controller: emailController,
+                decoration: const InputDecoration(
+                  labelText: "Email",
+                  border: OutlineInputBorder(),
+                  prefixIcon: Icon(Icons.email),
+                ),
+              ),
+
+              const SizedBox(height: 15),
+
+              TextField(
+                controller: passwordController,
+                obscureText: true,
+                decoration: const InputDecoration(
+                  labelText: "Password",
+                  border: OutlineInputBorder(),
+                  prefixIcon: Icon(Icons.lock),
+                ),
+              ),
+
+              const SizedBox(height: 20),
+
+              ElevatedButton(
+                onPressed: () {
+                  savedName = nameController.text;
+                  savedEmail = emailController.text;
+                  savedPassword = passwordController.text;
+
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text("Account Created")),
+                  );
+
+                  Navigator.pop(context);
+                },
+                child: const Text("Create Account"),
+              ),
+
+              const SizedBox(height: 10),
+
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text("Already have an account? Login"),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
