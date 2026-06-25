@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/constants/app_colors.dart';
+import 'package:flutter_application_2/features/auth/app_colors.dart';
 
 void main() {
   runApp(const SmartHomeApp());

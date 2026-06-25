@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/calender_screen.dart';
 import 'package:flutter_application_2/home.dart';
-import 'package:flutter_application_2/home_screen.dart';
-import 'package:flutter_application_2/login_screen.dart';
-import 'package:flutter_application_2/pagehome.dart';
+import 'package:flutter_application_2/features/home/home_screen.dart';
+import 'package:flutter_application_2/features/auth/login_screen.dart';
 import 'package:flutter_application_2/profile_screen.dart';
 import 'package:flutter_application_2/setting_page.dart';
 import 'package:flutter_application_2/smart_home_screen.dart';
@@ -18,12 +18,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: "My App",
+      theme: ThemeData(primarySwatch: Colors.blue),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => CalenderScreen(),
+        // '77': (context) => SettingPage(),
+      },
       // theme: ,
       debugShowCheckedModeBanner: false,
       //
-      home :LoginScreen()
+      // home :LoginScreen()
     );
-      
-}
-
+  }
 }
