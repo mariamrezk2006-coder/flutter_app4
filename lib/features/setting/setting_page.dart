@@ -219,6 +219,15 @@ class _SettingPage extends State<SettingPage> {
                       "Security",
                       "Password - 2FA enabled",
                     ),
+                    ListTile(
+                   leading: const Icon(Icons.calendar_month_outlined),
+                title: const Text("Calendar"),
+            subtitle: const Text("View your schedule"),
+             trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+               onTap: () {
+            Navigator.pushNamed(context, '/calendarscreen');
+  },
+),
                   ],
                 ),
               ),

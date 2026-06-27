@@ -27,11 +27,11 @@ class SmartHomeApp extends StatelessWidget {
         '/signin': (context) => const SignInScreen(),
         '/signup': (context) => const SignUpScreen(),
         '/smartHome': (context) => const SmartHomeScreen(),
-        
-      
-      
+        '/settingpag': (context)=> const SettingPage(),
+        '/calendarscreen':(context)=>const CalendarScreen(),
       
       },
+  
     );
   }
 }

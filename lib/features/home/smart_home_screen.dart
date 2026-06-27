@@ -144,15 +144,18 @@ class _SmartHomeScreenState extends State<SmartHomeScreen> {
                   ),
                 ),
 
-                const ListTile(
-                  leading:
-                      Icon(Icons.settings, color: Colors.white),
-                  title: Text(
-                    "Settings",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
+                ListTile(
+  leading: const Icon(Icons.settings, color: Colors.white),
+  title: const Text(
+    "Settings",
+    style: TextStyle(color: Colors.white),
+  ),
+  onTap: () {
+    Navigator.pushNamed(context, '/settingpag');
+  },
+),
               ],
+              
             ),
           ),
         ),

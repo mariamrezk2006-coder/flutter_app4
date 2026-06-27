@@ -1,148 +1,294 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/core/constants/app_colors.dart';
 
-class CalenderScreen extends StatelessWidget {
-  const CalenderScreen({super.key});
+
+
+class CalendarScreen extends StatelessWidget {
+  const CalendarScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     appBar: AppBar(
-  backgroundColor: Colors.white,
-  elevation: 0,
-  centerTitle: true,
+      backgroundColor: const Color(0xffF8F7F3),
 
-  leading: IconButton(
-    onPressed: () {},
-    icon: Icon(
-      Icons.menu,
-      color: Colors.black,
-    ),
-  ),
-
-  title: Text(
-    "Analytics",
-    style: TextStyle(
-      color: Colors.black,
-      fontWeight: FontWeight.w500,
-    ),
-  ),
-
-  actions: [
-    Padding(
-      padding: EdgeInsets.only(right: 15),
-
-      child: CircleAvatar(
-        radius: 20,
-        backgroundColor: Color(0xff8EA28F),
-
-        child: Text(
-          "RB",
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        centerTitle: true,
+        title: const Text(
+          "Analytics",
           style: TextStyle(
-            color: Colors.white,
+            color: Colors.black,
             fontWeight: FontWeight.bold,
           ),
         ),
+        leading: Padding(
+          padding: const EdgeInsets.all(8),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: const Icon(Icons.menu, color: Colors.black),
+          ),
+        ),
+        actions: const [
+          Padding(
+            padding: EdgeInsets.only(right: 15),
+            child: CircleAvatar(
+              backgroundColor: Color(0xff4D8C76),
+              child: Text("RB"),
+            ),
+          ),
+        ],
       ),
-    ),
-  ],
-),
+
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20),
+
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+
             children: [
-              inofAndTowText(),
-              const SizedBox(height: 20),
-              greenConiner(),
+
+              const Text(
+                "This week",
+                style: TextStyle(
+                  color: Colors.grey,
+                ),
+              ),
+
+              const SizedBox(height: 10),
+
+              const Text(
+                "Energy Usage",
+                style: TextStyle(
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+
+              const SizedBox(height: 25),
+
+              // Green Card
+
+              Container(
+                padding: const EdgeInsets.all(20),
+                height: 280,
+                decoration: BoxDecoration(
+                  color: const Color(0xff2F564A),
+                  borderRadius: BorderRadius.circular(30),
+                ),
+
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+
+                    const Text(
+                      "Total this month",
+                      style: TextStyle(
+                        color: Colors.white70,
+                      ),
+                    ),
+
+                    const SizedBox(height: 15),
+
+                    const Text(
+                      "48.2 kWh",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 40,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+
+                    const SizedBox(height: 15),
+
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 8,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.white24,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: const Text(
+                        "↓ 12% vs last month",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+
+                    const Spacer(),
+
+                    Row(
+                      mainAxisAlignment:
+                          MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        chartBar(25),
+                        chartBar(40),
+                        chartBar(30),
+                        chartBar(55),
+                        chartBar(35),
+                        chartBar(50),
+                        chartBar(28),
+                        chartBar(60),
+                        chartBar(45),
+                        chartBar(35),
+                        chartBar(52),
+                        chartBar(
+                          58,
+                          color: Colors.white,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+
               const SizedBox(height: 30),
-              weekWidget(),
+
+              const Text(
+                "Daily Breakdown",
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+
+              const SizedBox(height: 20),
+
+              dayRow("Mon", 0.55, "5.2"),
+              dayRow("Tue", 0.72, "6.8"),
+              dayRow("Wed", 0.76, "7.1"),
+              dayRow("Thu", 0.50, "4.9"),
+              dayRow("Fri", 0.68, "6.3"),
+              dayRow("Sat", 0.90, "8.1"),
+              dayRow("Sun", 0.58, "5.5"),
+
+              const SizedBox(height: 30),
+
+              const Text(
+                "Top Consumers",
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+
+              const SizedBox(height: 20),
+
+              consumerCard(
+                Icons.ac_unit,
+                "AC Unit",
+                "Bedroom",
+                "12.4 kWh",
+                0.92,
+              ),
+
+              consumerCard(
+                Icons.power_settings_new,
+                "Refrigerator",
+                "Kitchen",
+                "9.8 kWh",
+                0.74,
+              ),
+
+              consumerCard(
+                Icons.lightbulb_outline,
+                "Lighting",
+                "All rooms",
+                "7.2 kWh",
+                0.58,
+              ),
+
+              consumerCard(
+                Icons.thermostat,
+                "Thermostat",
+                "Living Room",
+                "5.1 kWh",
+                0.40,
+              ),
             ],
           ),
         ),
       ),
-    );
-  }
 
-  ////////////////////////////////////////////////////
-
-  Widget inofAndTowText() {
-    return const Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          "This week",
-          style: TextStyle(
-            color: Colors.grey,
-            fontSize: 14,
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: 1,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home_outlined),
+            label: "",
           ),
-        ),
-        SizedBox(height: 5),
-        Text(
-          "Energy Usage",
-          style: TextStyle(
-            fontSize: 32,
-            fontWeight: FontWeight.bold,
+          BottomNavigationBarItem(
+            icon: Icon(Icons.bar_chart),
+            label: "",
           ),
-        ),
-      ],
-    );
-  }
-
-  ////////////////////////////////////////////////////
-
-  Widget greenConiner() {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: const Color(0xff26463C),
-        borderRadius: BorderRadius.circular(30),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.calendar_today_outlined),
+            label: "",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings_outlined),
+            label: "",
+          ),
+        ],
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+    );
+  }
+
+  static Widget chartBar(
+    double height, {
+    Color color = const Color(0xff80978E),
+  }) {
+    return Container(
+      width: 18,
+      height: height,
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(5),
+      ),
+    );
+  }
+
+  static Widget dayRow(
+    String day,
+    double value,
+    String amount,
+  ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+
+      child: Row(
         children: [
-          Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 10,
-              vertical: 4,
-            ),
-            decoration: BoxDecoration(
-              color: Colors.white24,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: const Text(
-              "Total this month",
-              style: TextStyle(color: Colors.white),
-            ),
+
+          SizedBox(
+            width: 40,
+            child: Text(day),
           ),
 
-          const SizedBox(height: 20),
-
-          const Text(
-            "48.2 kWh",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 40,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-
-          const SizedBox(height: 15),
-
-          Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 12,
-              vertical: 6,
-            ),
-            decoration: BoxDecoration(
-              color: Colors.white24,
+          Expanded(
+            child: LinearProgressIndicator(
+              value: value,
+              minHeight: 8,
               borderRadius: BorderRadius.circular(20),
+              backgroundColor: Colors.grey.shade200,
+              valueColor:
+                  const AlwaysStoppedAnimation(
+                    Color(0xff4D8C76),
+                  ),
             ),
-            child: const Text(
-              "↓ 12% vs last month",
-              style: TextStyle(color: Colors.white),
+          ),
+
+          const SizedBox(width: 15),
+
+          SizedBox(
+            width: 60,
+            child: Text(
+              "$amount kWh",
+              textAlign: TextAlign.end,
             ),
           ),
         ],
@@ -150,70 +296,92 @@ class CalenderScreen extends StatelessWidget {
     );
   }
 
-  ////////////////////////////////////////////////////
-
-  Widget weekWidget() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          "Daily Breakdown",
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-
-        const SizedBox(height: 20),
-
-        dayRow("Mon", 5.2, 0.60),
-        dayRow("Tue", 6.8, 0.80),
-        dayRow("Wed", 7.1, 0.85),
-        dayRow("Thu", 4.9, 0.55),
-        dayRow("Fri", 6.3, 0.75),
-        dayRow("Sat", 8.1, 1.00),
-        dayRow("Sun", 5.5, 0.65),
-      ],
-    );
-  }
-
-  ////////////////////////////////////////////////////
-
-  Widget dayRow(
-    String day,
-    double value,
-    double widthFactor,
+  static Widget consumerCard(
+    IconData icon,
+    String title,
+    String room,
+    String usage,
+    double progress,
   ) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 20),
+    return Container(
+      margin: const EdgeInsets.only(bottom: 15),
+      padding: const EdgeInsets.all(15),
+
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+      ),
+
       child: Row(
         children: [
-          SizedBox(
-            width: 40,
-            child: Text(day),
-          ),
 
-          Expanded(
-            child: FractionallySizedBox(
-              alignment: Alignment.centerLeft,
-              widthFactor: widthFactor,
-              child: Container(
-                height: 10,
-                decoration: BoxDecoration(
-                  color: const Color(0xff26463C),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-              ),
+          Container(
+            width: 55,
+            height: 55,
+            decoration: BoxDecoration(
+              color: Colors.grey.shade100,
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: Icon(
+              icon,
+              color: const Color(0xff4D8C76),
             ),
           ),
 
           const SizedBox(width: 15),
 
-          SizedBox(
-            width: 55,
-            child: Text(
-              "$value\nkWh",
-              textAlign: TextAlign.center,
+          Expanded(
+            child: Column(
+              crossAxisAlignment:
+                  CrossAxisAlignment.start,
+
+              children: [
+
+                Row(
+                  mainAxisAlignment:
+                      MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      title,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+
+                    Text(
+                      usage,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+
+                const SizedBox(height: 8),
+
+                LinearProgressIndicator(
+                  value: progress,
+                  minHeight: 6,
+                  borderRadius:
+                      BorderRadius.circular(20),
+                  backgroundColor:
+                      Colors.grey.shade200,
+                  valueColor:
+                      const AlwaysStoppedAnimation(
+                    Color(0xff4D8C76),
+                  ),
+                ),
+
+                const SizedBox(height: 8),
+
+                Text(
+                  room,
+                  style: const TextStyle(
+                    color: Colors.grey,
+                  ),
+                ),
+              ],
             ),
           ),
         ],
