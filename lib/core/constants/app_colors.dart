@@ -23,5 +23,6 @@ class AppColors {
   static const Color white24 = Colors.white24;
 
   static const Color cardColor = Colors.white;
+  static const Color hint = Color(0xff9E9E9E);
 }
 

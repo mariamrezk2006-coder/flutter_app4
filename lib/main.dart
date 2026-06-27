@@ -1,34 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/calender_screen.dart';
-import 'package:flutter_application_2/home.dart';
-import 'package:flutter_application_2/features/home/home_screen.dart';
-import 'package:flutter_application_2/features/auth/login_screen.dart';
-import 'package:flutter_application_2/profile_screen.dart';
-import 'package:flutter_application_2/setting_page.dart';
-import 'package:flutter_application_2/smart_home_screen.dart';
+
+import 'features/auth/sign_in_screen.dart';
+import 'features/auth/sign_up_screen.dart';
+import 'features/home/smart_home_screen.dart';
+import 'features/home/home_screen.dart';
+import 'features/profile/profile_screen.dart';
+import 'features/setting/setting_page.dart';
+import 'features/calendar/calendar_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const SmartHomeApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class SmartHomeApp extends StatelessWidget {
+  const SmartHomeApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "My App",
-      theme: ThemeData(primarySwatch: Colors.blue),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => CalenderScreen(),
-        // '77': (context) => SettingPage(),
-      },
-      // theme: ,
       debugShowCheckedModeBanner: false,
-      //
-      // home :LoginScreen()
+      title: 'Smart Home',
+
+      initialRoute: '/signin',
+
+      routes: {
+        '/signin': (context) => const SignInScreen(),
+        '/signup': (context) => const SignUpScreen(),
+        '/smartHome': (context) => const SmartHomeScreen(),
+        
+      
+      
+      
+      },
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'features/auth/app_colors.dart';
+import '../../core/constants/app_colors.dart';
 
 class SettingPage extends StatefulWidget {
   const SettingPage({super.key});

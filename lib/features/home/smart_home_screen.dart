@@ -1,30 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/features/auth/app_colors.dart';
+import 'package:flutter_application_2/core/constants/app_colors.dart';
 
-void main() {
-  runApp(const SmartHomeApp());
-}
 
-class SmartHomeApp extends StatelessWidget {
-  const SmartHomeApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: const SmartHomeScreen(),
-    );
-  }
-}
 
 class SmartHomeScreen extends StatefulWidget {
   const SmartHomeScreen({super.key});
 
   @override
-  State<SmartHomeScreen> createState() => _HomeScreenState();
+  State<SmartHomeScreen> createState() => _SmartHomeScreenState();
 }
 
-class _HomeScreenState extends State<SmartHomeScreen> {
+class _SmartHomeScreenState extends State<SmartHomeScreen> {
   List<bool> isSelected = [
     true,
     true,
@@ -319,7 +305,7 @@ class _HomeScreenState extends State<SmartHomeScreen> {
                 const SizedBox(height: 20),
 
                 roomTile(image: 
-                  "assets/images/Image (Living Room).png",
+                  "lib/core/assets/images/Image (Living Room).png",
                   title: "Living Room",
                   subtitle: "4 devices • 22°C",
                 ),
@@ -327,7 +313,7 @@ class _HomeScreenState extends State<SmartHomeScreen> {
                 const SizedBox(height: 15),
 
                 roomTile(image: 
-                  "assets/images/Image (Bedroom).png",
+                  "lib/core/assets/images/Image (Bedroom).png",
                   title: "Bedroom",
                   subtitle: "3 devices • 20°C",
                 ),
@@ -336,7 +322,7 @@ class _HomeScreenState extends State<SmartHomeScreen> {
 
                 roomTile(
                   image:
-                     "assets/images/Image (Kitchen).png" ,
+                     "lib/core/assets/images/Image (Kitchen).png" ,
                   title: "Kitchen",
                   subtitle: "5 devices • 24°C",
                 ),
@@ -453,8 +439,7 @@ class _HomeScreenState extends State<SmartHomeScreen> {
                                                 index]
                                             ? Colors
                                                 .white
-                                            : Colors
-                                                .black,
+                                            : const Color.fromARGB(255, 133, 66, 66),
                                   ),
                                 ),
                                 const SizedBox(

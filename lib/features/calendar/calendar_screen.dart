@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/features/auth/app_colors.dart';
+import 'package:flutter_application_2/core/constants/app_colors.dart';
 
 class CalenderScreen extends StatelessWidget {
   const CalenderScreen({super.key});
